@@ -1,4 +1,6 @@
-# AI-Powered Automatic Block Planning (SIH26027)
+# BlockPlan-AI
+
+## AI-Powered Automatic Block Planning (SIH26027)
 
 A modular, production-ready intelligent railway block possession scheduling and planning platform. The system ingests maintenance requests across Track (TMS), Signal & Telecom (SMMS), Traction (TDMS), and Control Office Applications (COA), applies machine learning to score task criticality, uses mathematical optimization (OR-Tools CP-SAT) to co-schedule multi-department maintenance windows, and provides interactive review tools for railway section controllers.
 
