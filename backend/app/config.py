@@ -24,7 +24,7 @@ class Settings(BaseModel):
     """Process-wide API configuration. Extend via env, not hardcoded secrets."""
 
     app_title: str = Field(
-        default="SIH26027 Block Planning API",
+        default="BlockPlan AI API",
         description="OpenAPI title and service name.",
     )
     app_description: str = Field(
@@ -36,7 +36,7 @@ class Settings(BaseModel):
     )
     app_version: str = Field(default="0.1.0", description="API version string.")
     environment: str = Field(
-        default="development",
+        default="production",
         description="deployment environment label (development, staging, production).",
     )
     debug: bool = Field(default=False, description="Enable FastAPI debug mode.")
