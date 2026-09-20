@@ -1,0 +1,1332 @@
+{
+  "department_analysis": {
+    "test_name": "Kruskal-Wallis H-test",
+    "hypothesis": "Criticality distributions differ across departments",
+    "department_stats": {
+      "Traction": {
+        "count": 41,
+        "mean": 38.63,
+        "median": 35.09,
+        "std": 24.73,
+        "min": 0.0,
+        "max": 100.0,
+        "q25": 20.26,
+        "q75": 52.23,
+        "iqr": 31.97,
+        "skewness": 0.8753,
+        "kurtosis": 0.5294
+      },
+      "S&T": {
+        "count": 37,
+        "mean": 46.27,
+        "median": 40.42,
+        "std": 23.75,
+        "min": 3.19,
+        "max": 96.02,
+        "q25": 29.82,
+        "q75": 65.76,
+        "iqr": 35.94,
+        "skewness": 0.4064,
+        "kurtosis": -0.4602
+      },
+      "Engineering": {
+        "count": 22,
+        "mean": 45.85,
+        "median": 41.42,
+        "std": 23.56,
+        "min": 3.49,
+        "max": 95.48,
+        "q25": 30.35,
+        "q75": 63.6,
+        "iqr": 33.25,
+        "skewness": 0.1655,
+        "kurtosis": -0.2691
+      }
+    },
+    "h_statistic": 3.1569,
+    "p_value": 0.206299,
+    "significant_at_005": false,
+    "interpretation": "No significant difference between department criticality distributions.",
+    "pairwise_tests": [
+      {
+        "department_1": "Traction",
+        "department_2": "S&T",
+        "u_statistic": 599.0,
+        "p_value": 0.1116,
+        "significant": false
+      },
+      {
+        "department_1": "Traction",
+        "department_2": "Engineering",
+        "u_statistic": 357.0,
+        "p_value": 0.177639,
+        "significant": false
+      },
+      {
+        "department_1": "S&T",
+        "department_2": "Engineering",
+        "u_statistic": 409.0,
+        "p_value": 0.981242,
+        "significant": false
+      }
+    ]
+  },
+  "urgency_analysis": {
+    "critical_threshold": 70.0,
+    "survival_curve": [
+      {
+        "days_overdue": 0,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 94
+      },
+      {
+        "days_overdue": 1,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 91
+      },
+      {
+        "days_overdue": 2,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 88
+      },
+      {
+        "days_overdue": 3,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 86
+      },
+      {
+        "days_overdue": 4,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 84
+      },
+      {
+        "days_overdue": 5,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 81
+      },
+      {
+        "days_overdue": 6,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 79
+      },
+      {
+        "days_overdue": 7,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 77
+      },
+      {
+        "days_overdue": 8,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 73
+      },
+      {
+        "days_overdue": 9,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 68
+      },
+      {
+        "days_overdue": 10,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 66
+      },
+      {
+        "days_overdue": 11,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 64
+      },
+      {
+        "days_overdue": 12,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 60
+      },
+      {
+        "days_overdue": 13,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 57
+      },
+      {
+        "days_overdue": 14,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 55
+      },
+      {
+        "days_overdue": 15,
+        "survival_probability": 1.0,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 51
+      },
+      {
+        "days_overdue": 16,
+        "survival_probability": 0.9804,
+        "critical_at_this_day": 1,
+        "remaining_at_risk": 48
+      },
+      {
+        "days_overdue": 17,
+        "survival_probability": 0.96,
+        "critical_at_this_day": 1,
+        "remaining_at_risk": 47
+      },
+      {
+        "days_overdue": 18,
+        "survival_probability": 0.96,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 45
+      },
+      {
+        "days_overdue": 19,
+        "survival_probability": 0.9386,
+        "critical_at_this_day": 1,
+        "remaining_at_risk": 41
+      },
+      {
+        "days_overdue": 20,
+        "survival_probability": 0.9386,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 37
+      },
+      {
+        "days_overdue": 21,
+        "survival_probability": 0.9133,
+        "critical_at_this_day": 1,
+        "remaining_at_risk": 33
+      },
+      {
+        "days_overdue": 22,
+        "survival_probability": 0.9133,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 29
+      },
+      {
+        "days_overdue": 23,
+        "survival_probability": 0.8818,
+        "critical_at_this_day": 1,
+        "remaining_at_risk": 24
+      },
+      {
+        "days_overdue": 24,
+        "survival_probability": 0.7348,
+        "critical_at_this_day": 4,
+        "remaining_at_risk": 20
+      },
+      {
+        "days_overdue": 25,
+        "survival_probability": 0.7348,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 14
+      },
+      {
+        "days_overdue": 26,
+        "survival_probability": 0.6823,
+        "critical_at_this_day": 1,
+        "remaining_at_risk": 9
+      },
+      {
+        "days_overdue": 27,
+        "survival_probability": 0.5307,
+        "critical_at_this_day": 2,
+        "remaining_at_risk": 5
+      },
+      {
+        "days_overdue": 28,
+        "survival_probability": 0.3184,
+        "critical_at_this_day": 2,
+        "remaining_at_risk": 1
+      },
+      {
+        "days_overdue": 29,
+        "survival_probability": 0.3184,
+        "critical_at_this_day": 0,
+        "remaining_at_risk": 0
+      }
+    ],
+    "median_survival_days": 28,
+    "severity_breakdown": {
+      "A": {
+        "count": 24,
+        "avg_days_overdue": 16.0,
+        "avg_criticality": 70.91,
+        "pct_critical": 54.2
+      },
+      "B": {
+        "count": 26,
+        "avg_days_overdue": 14.9,
+        "avg_criticality": 45.21,
+        "pct_critical": 3.8
+      },
+      "C": {
+        "count": 50,
+        "avg_days_overdue": 15.1,
+        "avg_criticality": 28.55,
+        "pct_critical": 0.0
+      }
+    }
+  },
+  "correlation_analysis": {
+    "method": "Spearman Rank Correlation",
+    "correlation_matrix": {
+      "days_overdue": {
+        "days_overdue": 1.0,
+        "estimated_hours": -0.0534,
+        "asset_age_years": 0.1117,
+        "severity_numeric": 0.0349,
+        "criticality_score": 0.7523
+      },
+      "estimated_hours": {
+        "days_overdue": -0.0534,
+        "estimated_hours": 1.0,
+        "asset_age_years": -0.115,
+        "severity_numeric": 0.1382,
+        "criticality_score": 0.0159
+      },
+      "asset_age_years": {
+        "days_overdue": 0.1117,
+        "estimated_hours": -0.115,
+        "asset_age_years": 1.0,
+        "severity_numeric": 0.0836,
+        "criticality_score": 0.1939
+      },
+      "severity_numeric": {
+        "days_overdue": 0.0349,
+        "estimated_hours": 0.1382,
+        "asset_age_years": 0.0836,
+        "severity_numeric": 1.0,
+        "criticality_score": 0.6539
+      },
+      "criticality_score": {
+        "days_overdue": 0.7523,
+        "estimated_hours": 0.0159,
+        "asset_age_years": 0.1939,
+        "severity_numeric": 0.6539,
+        "criticality_score": 1.0
+      }
+    },
+    "top_criticality_correlates": [
+      {
+        "feature": "days_overdue",
+        "correlation": 0.7523,
+        "strength": "Strong",
+        "direction": "Positive"
+      },
+      {
+        "feature": "severity_numeric",
+        "correlation": 0.6539,
+        "strength": "Moderate",
+        "direction": "Positive"
+      },
+      {
+        "feature": "asset_age_years",
+        "correlation": 0.1939,
+        "strength": "Weak",
+        "direction": "Positive"
+      },
+      {
+        "feature": "estimated_hours",
+        "correlation": 0.0159,
+        "strength": "Weak",
+        "direction": "Positive"
+      }
+    ],
+    "significance_tests": [
+      {
+        "feature_1": "days_overdue",
+        "feature_2": "estimated_hours",
+        "correlation": -0.0534,
+        "p_value": 0.597947,
+        "significant": false
+      },
+      {
+        "feature_1": "days_overdue",
+        "feature_2": "asset_age_years",
+        "correlation": 0.1117,
+        "p_value": 0.268332,
+        "significant": false
+      },
+      {
+        "feature_1": "days_overdue",
+        "feature_2": "severity_numeric",
+        "correlation": 0.0349,
+        "p_value": 0.730116,
+        "significant": false
+      },
+      {
+        "feature_1": "days_overdue",
+        "feature_2": "criticality_score",
+        "correlation": 0.7523,
+        "p_value": 0.0,
+        "significant": true
+      },
+      {
+        "feature_1": "estimated_hours",
+        "feature_2": "asset_age_years",
+        "correlation": -0.115,
+        "p_value": 0.254636,
+        "significant": false
+      },
+      {
+        "feature_1": "estimated_hours",
+        "feature_2": "severity_numeric",
+        "correlation": 0.1382,
+        "p_value": 0.170339,
+        "significant": false
+      },
+      {
+        "feature_1": "estimated_hours",
+        "feature_2": "criticality_score",
+        "correlation": 0.0159,
+        "p_value": 0.875291,
+        "significant": false
+      },
+      {
+        "feature_1": "asset_age_years",
+        "feature_2": "severity_numeric",
+        "correlation": 0.0836,
+        "p_value": 0.408297,
+        "significant": false
+      },
+      {
+        "feature_1": "asset_age_years",
+        "feature_2": "criticality_score",
+        "correlation": 0.1939,
+        "p_value": 0.053226,
+        "significant": false
+      },
+      {
+        "feature_1": "severity_numeric",
+        "feature_2": "criticality_score",
+        "correlation": 0.6539,
+        "p_value": 0.0,
+        "significant": true
+      }
+    ]
+  },
+  "anomaly_detection": {
+    "z_threshold": 2.5,
+    "total_tasks_analyzed": 100,
+    "total_anomalies_detected": 0,
+    "feature_stats": {
+      "days_overdue": {
+        "mean": 15.27,
+        "std": 8.93,
+        "z_threshold": 2.5,
+        "num_outliers": 0,
+        "outlier_pct": 0.0
+      },
+      "estimated_hours": {
+        "mean": 3.89,
+        "std": 2.0,
+        "z_threshold": 2.5,
+        "num_outliers": 0,
+        "outlier_pct": 0.0
+      },
+      "asset_age_years": {
+        "mean": 14.01,
+        "std": 8.16,
+        "z_threshold": 2.5,
+        "num_outliers": 0,
+        "outlier_pct": 0.0
+      },
+      "criticality_score": {
+        "mean": 43.05,
+        "std": 24.16,
+        "z_threshold": 2.5,
+        "num_outliers": 0,
+        "outlier_pct": 0.0
+      },
+      "severity_numeric": {
+        "mean": 1.74,
+        "std": 0.82,
+        "z_threshold": 2.5,
+        "num_outliers": 0,
+        "outlier_pct": 0.0
+      }
+    },
+    "anomalous_tasks": [],
+    "multi_feature_anomalies": []
+  },
+  "load_forecast": {
+    "method": "Simple Exponential Smoothing with Trend",
+    "smoothing_alpha": 0.3,
+    "historical_days": 30,
+    "forecast_periods": 7,
+    "daily_history": [
+      {
+        "day": 1,
+        "task_count": 31,
+        "total_hours": 131.0,
+        "avg_severity": 1.81
+      },
+      {
+        "day": 2,
+        "task_count": 34,
+        "total_hours": 157.0,
+        "avg_severity": 1.5
+      },
+      {
+        "day": 3,
+        "task_count": 36,
+        "total_hours": 145.0,
+        "avg_severity": 1.5
+      },
+      {
+        "day": 4,
+        "task_count": 38,
+        "total_hours": 149.0,
+        "avg_severity": 1.55
+      },
+      {
+        "day": 5,
+        "task_count": 24,
+        "total_hours": 108.0,
+        "avg_severity": 1.75
+      },
+      {
+        "day": 6,
+        "task_count": 37,
+        "total_hours": 136.0,
+        "avg_severity": 1.62
+      },
+      {
+        "day": 7,
+        "task_count": 42,
+        "total_hours": 154.0,
+        "avg_severity": 1.95
+      },
+      {
+        "day": 8,
+        "task_count": 37,
+        "total_hours": 145.0,
+        "avg_severity": 1.78
+      },
+      {
+        "day": 9,
+        "task_count": 36,
+        "total_hours": 143.0,
+        "avg_severity": 1.58
+      },
+      {
+        "day": 10,
+        "task_count": 29,
+        "total_hours": 113.0,
+        "avg_severity": 1.69
+      },
+      {
+        "day": 11,
+        "task_count": 39,
+        "total_hours": 167.0,
+        "avg_severity": 1.59
+      },
+      {
+        "day": 12,
+        "task_count": 29,
+        "total_hours": 133.0,
+        "avg_severity": 1.62
+      },
+      {
+        "day": 13,
+        "task_count": 31,
+        "total_hours": 113.0,
+        "avg_severity": 1.68
+      },
+      {
+        "day": 14,
+        "task_count": 34,
+        "total_hours": 129.0,
+        "avg_severity": 1.68
+      },
+      {
+        "day": 15,
+        "task_count": 35,
+        "total_hours": 135.0,
+        "avg_severity": 1.43
+      },
+      {
+        "day": 16,
+        "task_count": 36,
+        "total_hours": 156.0,
+        "avg_severity": 1.78
+      },
+      {
+        "day": 17,
+        "task_count": 36,
+        "total_hours": 171.0,
+        "avg_severity": 1.5
+      },
+      {
+        "day": 18,
+        "task_count": 42,
+        "total_hours": 179.0,
+        "avg_severity": 2.05
+      },
+      {
+        "day": 19,
+        "task_count": 31,
+        "total_hours": 123.0,
+        "avg_severity": 1.61
+      },
+      {
+        "day": 20,
+        "task_count": 32,
+        "total_hours": 115.0,
+        "avg_severity": 1.53
+      },
+      {
+        "day": 21,
+        "task_count": 24,
+        "total_hours": 99.0,
+        "avg_severity": 1.79
+      },
+      {
+        "day": 22,
+        "task_count": 33,
+        "total_hours": 120.0,
+        "avg_severity": 1.76
+      },
+      {
+        "day": 23,
+        "task_count": 35,
+        "total_hours": 142.0,
+        "avg_severity": 1.54
+      },
+      {
+        "day": 24,
+        "task_count": 36,
+        "total_hours": 144.0,
+        "avg_severity": 1.67
+      },
+      {
+        "day": 25,
+        "task_count": 37,
+        "total_hours": 148.0,
+        "avg_severity": 2.05
+      },
+      {
+        "day": 26,
+        "task_count": 29,
+        "total_hours": 123.0,
+        "avg_severity": 1.79
+      },
+      {
+        "day": 27,
+        "task_count": 38,
+        "total_hours": 129.0,
+        "avg_severity": 1.92
+      },
+      {
+        "day": 28,
+        "task_count": 28,
+        "total_hours": 110.0,
+        "avg_severity": 1.86
+      },
+      {
+        "day": 29,
+        "task_count": 38,
+        "total_hours": 153.0,
+        "avg_severity": 1.58
+      },
+      {
+        "day": 30,
+        "task_count": 22,
+        "total_hours": 98.0,
+        "avg_severity": 1.64
+      }
+    ],
+    "smoothed_values": [
+      131.0,
+      138.8,
+      140.7,
+      143.2,
+      132.6,
+      133.6,
+      139.7,
+      141.3,
+      141.8,
+      133.2,
+      143.3,
+      140.2,
+      132.1,
+      131.1,
+      132.3,
+      139.4,
+      148.9,
+      157.9,
+      147.4,
+      137.7,
+      126.1,
+      124.3,
+      129.6,
+      133.9,
+      138.1,
+      133.6,
+      132.2,
+      125.6,
+      133.8,
+      123.1
+    ],
+    "forecast": [
+      {
+        "day": 31,
+        "predicted_hours": 120.4,
+        "confidence_lower": 84.3,
+        "confidence_upper": 156.5
+      },
+      {
+        "day": 32,
+        "predicted_hours": 117.8,
+        "confidence_lower": 82.4,
+        "confidence_upper": 153.1
+      },
+      {
+        "day": 33,
+        "predicted_hours": 115.1,
+        "confidence_lower": 80.6,
+        "confidence_upper": 149.7
+      },
+      {
+        "day": 34,
+        "predicted_hours": 112.5,
+        "confidence_lower": 78.8,
+        "confidence_upper": 146.3
+      },
+      {
+        "day": 35,
+        "predicted_hours": 109.9,
+        "confidence_lower": 76.9,
+        "confidence_upper": 142.8
+      },
+      {
+        "day": 36,
+        "predicted_hours": 107.2,
+        "confidence_lower": 75.1,
+        "confidence_upper": 139.4
+      },
+      {
+        "day": 37,
+        "predicted_hours": 104.6,
+        "confidence_lower": 73.2,
+        "confidence_upper": 136.0
+      }
+    ],
+    "trend_direction": "Decreasing",
+    "avg_daily_load": 135.6
+  },
+  "schedule_efficiency": {
+    "total_tasks": 100,
+    "scheduled_count": 73,
+    "unscheduled_count": 27,
+    "scheduling_rate_pct": 73.0,
+    "avg_window_utilization_pct": 98.9,
+    "total_window_hours_available": 254,
+    "total_window_hours_used": 233,
+    "overall_capacity_utilization_pct": 91.7,
+    "window_utilization": [
+      {
+        "window_id": 1,
+        "corridor_id": "COR_04",
+        "day": "Sun",
+        "available_hours": 8,
+        "used_hours": 8,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 2,
+        "corridor_id": "COR_05",
+        "day": "Tue",
+        "available_hours": 3,
+        "used_hours": 3,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 3,
+        "corridor_id": "COR_03",
+        "day": "Tue",
+        "available_hours": 9,
+        "used_hours": 9,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 4,
+        "corridor_id": "COR_02",
+        "day": "Tue",
+        "available_hours": 5,
+        "used_hours": 5,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 5,
+        "corridor_id": "COR_01",
+        "day": "Fri",
+        "available_hours": 9,
+        "used_hours": 9,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 7,
+        "corridor_id": "COR_01",
+        "day": "Thu",
+        "available_hours": 3,
+        "used_hours": 3,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 8,
+        "corridor_id": "COR_02",
+        "day": "Sat",
+        "available_hours": 5,
+        "used_hours": 5,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 9,
+        "corridor_id": "COR_02",
+        "day": "Thu",
+        "available_hours": 6,
+        "used_hours": 6,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 10,
+        "corridor_id": "COR_03",
+        "day": "Sat",
+        "available_hours": 6,
+        "used_hours": 6,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 11,
+        "corridor_id": "COR_04",
+        "day": "Fri",
+        "available_hours": 2,
+        "used_hours": 2,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 12,
+        "corridor_id": "COR_01",
+        "day": "Wed",
+        "available_hours": 3,
+        "used_hours": 3,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 13,
+        "corridor_id": "COR_03",
+        "day": "Sat",
+        "available_hours": 6,
+        "used_hours": 6,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 14,
+        "corridor_id": "COR_05",
+        "day": "Tue",
+        "available_hours": 7,
+        "used_hours": 7,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 15,
+        "corridor_id": "COR_04",
+        "day": "Wed",
+        "available_hours": 8,
+        "used_hours": 8,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 16,
+        "corridor_id": "COR_03",
+        "day": "Sun",
+        "available_hours": 6,
+        "used_hours": 6,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 17,
+        "corridor_id": "COR_01",
+        "day": "Fri",
+        "available_hours": 5,
+        "used_hours": 5,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 19,
+        "corridor_id": "COR_05",
+        "day": "Sat",
+        "available_hours": 4,
+        "used_hours": 4,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 20,
+        "corridor_id": "COR_01",
+        "day": "Tue",
+        "available_hours": 8,
+        "used_hours": 8,
+        "utilization_pct": 100.0,
+        "num_tasks": 3,
+        "num_departments": 3,
+        "is_bundled": true
+      },
+      {
+        "window_id": 21,
+        "corridor_id": "COR_04",
+        "day": "Mon",
+        "available_hours": 2,
+        "used_hours": 2,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 22,
+        "corridor_id": "COR_04",
+        "day": "Sun",
+        "available_hours": 4,
+        "used_hours": 4,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 25,
+        "corridor_id": "COR_05",
+        "day": "Thu",
+        "available_hours": 6,
+        "used_hours": 6,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 26,
+        "corridor_id": "COR_05",
+        "day": "Mon",
+        "available_hours": 7,
+        "used_hours": 7,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 28,
+        "corridor_id": "COR_02",
+        "day": "Fri",
+        "available_hours": 9,
+        "used_hours": 9,
+        "utilization_pct": 100.0,
+        "num_tasks": 3,
+        "num_departments": 3,
+        "is_bundled": true
+      },
+      {
+        "window_id": 30,
+        "corridor_id": "COR_02",
+        "day": "Sun",
+        "available_hours": 8,
+        "used_hours": 8,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 31,
+        "corridor_id": "COR_03",
+        "day": "Wed",
+        "available_hours": 2,
+        "used_hours": 2,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 32,
+        "corridor_id": "COR_01",
+        "day": "Sun",
+        "available_hours": 3,
+        "used_hours": 3,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 33,
+        "corridor_id": "COR_02",
+        "day": "Wed",
+        "available_hours": 9,
+        "used_hours": 9,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 34,
+        "corridor_id": "COR_05",
+        "day": "Tue",
+        "available_hours": 2,
+        "used_hours": 2,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 35,
+        "corridor_id": "COR_03",
+        "day": "Wed",
+        "available_hours": 2,
+        "used_hours": 2,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 36,
+        "corridor_id": "COR_05",
+        "day": "Sat",
+        "available_hours": 7,
+        "used_hours": 7,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 37,
+        "corridor_id": "COR_03",
+        "day": "Wed",
+        "available_hours": 3,
+        "used_hours": 3,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 39,
+        "corridor_id": "COR_01",
+        "day": "Tue",
+        "available_hours": 7,
+        "used_hours": 7,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 41,
+        "corridor_id": "COR_03",
+        "day": "Sun",
+        "available_hours": 3,
+        "used_hours": 3,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 42,
+        "corridor_id": "COR_04",
+        "day": "Thu",
+        "available_hours": 7,
+        "used_hours": 7,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 43,
+        "corridor_id": "COR_02",
+        "day": "Mon",
+        "available_hours": 3,
+        "used_hours": 3,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 44,
+        "corridor_id": "COR_01",
+        "day": "Mon",
+        "available_hours": 9,
+        "used_hours": 9,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 46,
+        "corridor_id": "COR_04",
+        "day": "Fri",
+        "available_hours": 4,
+        "used_hours": 4,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 48,
+        "corridor_id": "COR_04",
+        "day": "Mon",
+        "available_hours": 9,
+        "used_hours": 9,
+        "utilization_pct": 100.0,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 49,
+        "corridor_id": "COR_02",
+        "day": "Sun",
+        "available_hours": 5,
+        "used_hours": 5,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 50,
+        "corridor_id": "COR_03",
+        "day": "Sun",
+        "available_hours": 3,
+        "used_hours": 3,
+        "utilization_pct": 100.0,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 40,
+        "corridor_id": "COR_05",
+        "day": "Fri",
+        "available_hours": 7,
+        "used_hours": 6,
+        "utilization_pct": 85.7,
+        "num_tasks": 2,
+        "num_departments": 2,
+        "is_bundled": true
+      },
+      {
+        "window_id": 6,
+        "corridor_id": "COR_05",
+        "day": "Thu",
+        "available_hours": 6,
+        "used_hours": 5,
+        "utilization_pct": 83.3,
+        "num_tasks": 3,
+        "num_departments": 3,
+        "is_bundled": true
+      },
+      {
+        "window_id": 29,
+        "corridor_id": "COR_04",
+        "day": "Wed",
+        "available_hours": 6,
+        "used_hours": 5,
+        "utilization_pct": 83.3,
+        "num_tasks": 1,
+        "num_departments": 1,
+        "is_bundled": false
+      },
+      {
+        "window_id": 18,
+        "corridor_id": "COR_02",
+        "day": "Thu",
+        "available_hours": 2,
+        "used_hours": 0,
+        "utilization_pct": 0.0,
+        "num_tasks": 0,
+        "num_departments": 0,
+        "is_bundled": false
+      },
+      {
+        "window_id": 23,
+        "corridor_id": "COR_02",
+        "day": "Mon",
+        "available_hours": 3,
+        "used_hours": 0,
+        "utilization_pct": 0.0,
+        "num_tasks": 0,
+        "num_departments": 0,
+        "is_bundled": false
+      },
+      {
+        "window_id": 24,
+        "corridor_id": "COR_02",
+        "day": "Wed",
+        "available_hours": 3,
+        "used_hours": 0,
+        "utilization_pct": 0.0,
+        "num_tasks": 0,
+        "num_departments": 0,
+        "is_bundled": false
+      },
+      {
+        "window_id": 27,
+        "corridor_id": "COR_02",
+        "day": "Wed",
+        "available_hours": 3,
+        "used_hours": 0,
+        "utilization_pct": 0.0,
+        "num_tasks": 0,
+        "num_departments": 0,
+        "is_bundled": false
+      },
+      {
+        "window_id": 38,
+        "corridor_id": "COR_02",
+        "day": "Tue",
+        "available_hours": 2,
+        "used_hours": 0,
+        "utilization_pct": 0.0,
+        "num_tasks": 0,
+        "num_departments": 0,
+        "is_bundled": false
+      },
+      {
+        "window_id": 45,
+        "corridor_id": "COR_02",
+        "day": "Wed",
+        "available_hours": 3,
+        "used_hours": 0,
+        "utilization_pct": 0.0,
+        "num_tasks": 0,
+        "num_departments": 0,
+        "is_bundled": false
+      },
+      {
+        "window_id": 47,
+        "corridor_id": "COR_01",
+        "day": "Wed",
+        "available_hours": 2,
+        "used_hours": 0,
+        "utilization_pct": 0.0,
+        "num_tasks": 0,
+        "num_departments": 0,
+        "is_bundled": false
+      }
+    ],
+    "corridor_summary": {
+      "COR_02": {
+        "total": 20,
+        "scheduled": 15,
+        "unscheduled": 5,
+        "avg_criticality": 44.49,
+        "severity_a": 8,
+        "scheduling_rate": 75.0
+      },
+      "COR_03": {
+        "total": 19,
+        "scheduled": 14,
+        "unscheduled": 5,
+        "avg_criticality": 45.95,
+        "severity_a": 3,
+        "scheduling_rate": 73.7
+      },
+      "COR_05": {
+        "total": 22,
+        "scheduled": 16,
+        "unscheduled": 6,
+        "avg_criticality": 40.07,
+        "severity_a": 4,
+        "scheduling_rate": 72.7
+      },
+      "COR_01": {
+        "total": 20,
+        "scheduled": 15,
+        "unscheduled": 5,
+        "avg_criticality": 41.58,
+        "severity_a": 5,
+        "scheduling_rate": 75.0
+      },
+      "COR_04": {
+        "total": 19,
+        "scheduled": 13,
+        "unscheduled": 6,
+        "avg_criticality": 43.6,
+        "severity_a": 4,
+        "scheduling_rate": 68.4
+      }
+    }
+  }
+}
