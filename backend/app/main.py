@@ -93,6 +93,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         "http://127.0.0.1:3000",
         "http://localhost:4173",
         "http://127.0.0.1:4173",
+        "https://block-plan-ai.vercel.app",
         "https://blockplan-ai.vercel.app",
     ]
     env_origins = os.getenv("CORS_ORIGINS") or os.getenv("ALLOWED_ORIGINS")
@@ -102,7 +103,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     application.add_middleware(
         CORSMiddleware,
         allow_origins=cors_origins,
-        allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$|^https://blockplan-ai.*\.vercel\.app$",
+        allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$|^https://block-?plan-?ai.*\.vercel\.app$",
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
