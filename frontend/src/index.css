@@ -146,17 +146,21 @@ select option {
     color: #8da2c9;
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.15s ease;
+    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     cursor: pointer;
     text-decoration: none;
+    position: relative;
   }
   .sidebar-item:hover {
     background: rgba(255, 255, 255, 0.06);
-    color: #d9e0ed;
+    color: #ffffff;
+    transform: translateX(2px);
   }
   .sidebar-item.active {
-    background: rgba(37, 99, 235, 0.15);
-    color: white;
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.22) 0%, rgba(37, 99, 235, 0.04) 100%);
+    color: #60a5fa;
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 #3b82f6;
   }
 
   .btn-primary {
@@ -473,5 +477,62 @@ select option {
   animation: slide-in-left 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
 .animate-ken-burns {
-  animation: ken-burns 20s ease-in-out infinite alternate;
+  animation: ken-burns 24s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
 }
+
+@keyframes light-sweep {
+  0% { transform: translateX(-150%) skewX(-20deg); opacity: 0; }
+  30% { opacity: 0.15; }
+  60% { opacity: 0.15; }
+  100% { transform: translateX(250%) skewX(-20deg); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(249, 115, 22, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(249, 115, 22, 0.45); }
+}
+
+.animate-light-sweep {
+  animation: light-sweep 8s ease-in-out infinite;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(240, 242, 246, 0.8) 25%,
+    rgba(225, 230, 238, 0.9) 50%,
+    rgba(240, 242, 246, 0.8) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+.glow-amber-hover:hover {
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.25);
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+.glow-cyan-hover:hover {
+  box-shadow: 0 8px 30px rgba(34, 211, 238, 0.25);
+  border-color: rgba(34, 211, 238, 0.5) !important;
+}
+
+.glow-purple-hover:hover {
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.25);
+  border-color: rgba(168, 85, 247, 0.5) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

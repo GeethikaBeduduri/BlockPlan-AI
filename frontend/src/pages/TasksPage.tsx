@@ -7,6 +7,7 @@
  */
 
 import { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
   Filter,
@@ -136,25 +137,27 @@ export default function TasksPage() {
             Real-time maintenance work orders sourced from TMS, TDMS, and SMMS across all railway corridors.
           </p>
         </div>
-        <button
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => refetch()}
           disabled={loading}
-          className="btn-secondary text-xs self-start sm:self-auto"
+          className="btn-secondary text-xs self-start sm:self-auto cursor-pointer"
           title="Refresh tasks from backend"
         >
-          <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+          <RotateCw className={`w-3.5 h-3.5 text-blue-600 ${loading ? 'animate-spin' : ''}`} />
           {loading ? 'Fetching...' : 'Refresh'}
-        </button>
+        </motion.button>
       </div>
 
-      {/* Error Banner */}
-      {error && (
+      {/* Error Banner (shown if refreshing existing tasks fails) */}
+      {error && tasks.length > 0 && (
         <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-in">
           <div className="flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
             <div>
               <h3 className="text-sm font-bold text-red-900">
-                Failed to load tasks from backend
+                Failed to refresh tasks from backend
               </h3>
               <p className="text-xs text-red-700 mt-0.5">
                 {error.message || 'Network error occurred while contacting the FastAPI service.'}
@@ -266,12 +269,28 @@ export default function TasksPage() {
       {/* Table & States */}
       <div className="card">
         {loading ? (
-          <div className="p-16 text-center space-y-3">
-            <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-            <p className="text-sm font-semibold text-navy-800">
-              Loading maintenance tasks...
-            </p>
-            <p className="text-xs text-gray-400">Fetching live database records</p>
+          <div className="p-6 space-y-3" role="status">
+            <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+              <div className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
+                <span className="text-xs font-semibold text-navy-800">
+                  Loading maintenance tasks from backend...
+                </span>
+              </div>
+              <div className="h-4 w-28 rounded-md skeleton-shimmer" />
+            </div>
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="flex items-center gap-4 py-3 border-b border-gray-50">
+                <div className="h-4 w-24 rounded skeleton-shimmer" />
+                <div className="h-5 w-28 rounded-full skeleton-shimmer" />
+                <div className="h-4 w-20 rounded skeleton-shimmer" />
+                <div className="h-4 w-16 rounded skeleton-shimmer" />
+                <div className="h-4 w-16 rounded skeleton-shimmer" />
+                <div className="h-4 w-20 rounded skeleton-shimmer" />
+                <div className="h-4 w-14 rounded skeleton-shimmer" />
+                <div className="h-5 w-20 rounded-full skeleton-shimmer ml-auto" />
+              </div>
+            ))}
           </div>
         ) : error ? (
           <div className="p-16 text-center space-y-3">
@@ -337,8 +356,12 @@ export default function TasksPage() {
                 {filteredAndSorted.map((task) => (
                   <tr
                     key={task.id}
-                    className={`cursor-pointer hover:bg-blue-50/40 transition-colors ${
-                      task.defectSeverity === 'A' ? 'critical-row' : ''
+                    className={`cursor-pointer transition-all duration-150 ${
+                      task.defectSeverity === 'A'
+                        ? 'bg-red-50/50 hover:bg-red-100/60 border-l-4 border-l-red-500'
+                        : task.defectSeverity === 'B'
+                        ? 'hover:bg-amber-50/30 border-l-4 border-l-transparent hover:border-l-amber-400'
+                        : 'hover:bg-blue-50/30 border-l-4 border-l-transparent hover:border-l-blue-400'
                     }`}
                     onClick={() => setSelectedTask(task)}
                   >
@@ -356,12 +379,12 @@ export default function TasksPage() {
                     </td>
                     <td>
                       <span
-                        className={`inline-flex items-center px-2 py-0.5 text-xs font-bold rounded-full ${
+                        className={`inline-flex items-center px-2.5 py-0.5 text-xs font-bold rounded-full transition-shadow ${
                           task.defectSeverity === 'A'
-                            ? 'bg-red-100 text-red-700'
+                            ? 'bg-red-100 text-red-700 shadow-[0_0_8px_rgba(239,68,68,0.25)]'
                             : task.defectSeverity === 'B'
-                            ? 'bg-amber-100 text-amber-700'
-                            : 'bg-emerald-100 text-emerald-700'
+                            ? 'bg-amber-100 text-amber-700 shadow-[0_0_6px_rgba(245,158,11,0.2)]'
+                            : 'bg-emerald-100 text-emerald-700 shadow-[0_0_6px_rgba(16,185,129,0.2)]'
                         }`}
                       >
                         Class {task.defectSeverity}
@@ -451,9 +474,11 @@ export default function TasksPage() {
       </div>
 
       {/* Task Detail Drawer */}
-      {selectedTask && (
-        <TaskDrawer task={selectedTask} onClose={() => setSelectedTask(null)} />
-      )}
+      <AnimatePresence>
+        {selectedTask && (
+          <TaskDrawer task={selectedTask} onClose={() => setSelectedTask(null)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -461,8 +486,20 @@ export default function TasksPage() {
 function TaskDrawer({ task, onClose }: { task: TaskViewModel; onClose: () => void }) {
   return (
     <>
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-[2px] z-40" onClick={onClose} />
-      <div className="drawer z-50">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/40 backdrop-blur-xs z-40"
+        onClick={onClose}
+      />
+      <motion.div
+        initial={{ x: '100%' }}
+        animate={{ x: 0 }}
+        exit={{ x: '100%' }}
+        transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+        className="drawer z-50 shadow-2xl"
+      >
         {/* Drawer Header */}
         <div className="p-5 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white shadow-sm">
           <div>
@@ -608,7 +645,7 @@ function TaskDrawer({ task, onClose }: { task: TaskViewModel; onClose: () => voi
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, Building2, UserCheck, KeyRound, ArrowRight, AlertCircle, CheckCircle2, RefreshCw, UserPlus, Lock, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import type { Role, DepartmentType } from '../data/mockComplaints';
 import trainHero from '../assets/train-hero.jpg';
+import AnimatedBackground from './animations/AnimatedBackground';
 
 export default function LoginPage() {
   const { authenticate, registerAccount, resetPassword } = useAuth();
@@ -171,6 +173,16 @@ export default function LoginPage() {
           background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.6) 100%)'
         }} />
 
+        {/* Subtle cinematic light sweep overlay */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="w-full h-full animate-light-sweep"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(249,115,22,0.12) 50%, rgba(255,255,255,0.06) 60%, transparent 100%)',
+            }}
+          />
+        </div>
+
         {/* Bottom gradient fade (blends into right panel on mobile) */}
         <div className="absolute bottom-0 left-0 right-0 h-32 lg:hidden" style={{
           background: 'linear-gradient(to top, #060608, transparent)'
@@ -180,6 +192,14 @@ export default function LoginPage() {
         <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-32" style={{
           background: 'linear-gradient(to left, #060608, transparent)'
         }} />
+
+        {/* Soft orange seam glow into right panel */}
+        <div
+          className="hidden lg:block absolute top-0 right-0 bottom-0 w-28 pointer-events-none z-10"
+          style={{
+            background: 'radial-gradient(ellipse at 100% 50%, rgba(249,115,22,0.22) 0%, transparent 75%)',
+          }}
+        />
 
         {/* Brand overlay text */}
         <div className="absolute bottom-8 left-8 right-8 lg:bottom-12 lg:left-12 z-10 animate-slide-in-left">
@@ -200,114 +220,159 @@ export default function LoginPage() {
       {/* ===== RIGHT PANEL — Forms ===== */}
       <div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-8 lg:px-12 py-8 lg:py-12 overflow-y-auto relative">
 
-        {/* Subtle background glow */}
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full blur-[100px] pointer-events-none" style={{ background: 'rgba(249,115,22,0.04)' }} />
+        {/* Modern Animated Infralytix-style Background */}
+        <AnimatedBackground
+          showParticles={true}
+          showGrid={true}
+          showShapes={true}
+          showOrbs={true}
+          intensity="medium"
+          theme="all"
+        />
 
         <div className="w-full max-w-md z-10 space-y-6">
-
+          <AnimatePresence mode="wait">
           {/* ============== STEP 1: ROLE SELECTION ============== */}
           {step === 'role-select' && (
-            <div className="animate-fade-slide-up space-y-6">
+            <motion.div
+              key="role-select"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-6"
+            >
               <div>
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-semibold text-white/70 mb-2.5 backdrop-blur-md"
+                >
+                  <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse shadow-[0_0_8px_rgba(249,115,22,0.8)]" />
+                  <span>BlockPlan AI • Indian Railways</span>
+                </motion.div>
                 <h2 className="text-white font-extrabold text-2xl sm:text-3xl tracking-tight">
-                  Select Your <span style={{ color: '#f97316' }}>Role</span>
+                  Select Your <span className="bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">Role</span>
                 </h2>
-                <p className="text-white/30 text-sm mt-2">Choose your operational role to access the portal.</p>
+                <p className="text-white/40 text-sm mt-1.5">Choose your operational role to access the portal.</p>
               </div>
 
               <div className="space-y-3">
                 {/* Station Master Card */}
-                <div
+                <motion.div
                   onClick={() => handleRoleCardClick('STATION_MASTER')}
-                  className="group cursor-pointer rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 hover:translate-x-1"
+                  whileHover={{ y: -6 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                  className="group cursor-pointer rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 relative overflow-hidden"
                   style={{
                     background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    backdropFilter: 'blur(12px)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(245,158,11,0.4)';
-                    e.currentTarget.style.background = 'rgba(245,158,11,0.06)';
+                    e.currentTarget.style.borderColor = 'rgba(245,158,11,0.5)';
+                    e.currentTarget.style.background = 'rgba(245,158,11,0.08)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(245,158,11,0.18)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
                     e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.25)' }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" style={{ background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.3)' }}>
                     <UserCheck className="w-6 h-6 text-amber-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-white font-bold text-base">Station Master</h3>
-                    <p className="text-white/30 text-xs mt-0.5 leading-relaxed">Report defects, track complaints, respond to clarifications</p>
+                    <h3 className="text-white font-bold text-base group-hover:text-amber-300 transition-colors">Station Master</h3>
+                    <p className="text-white/40 text-xs mt-0.5 leading-relaxed">Report defects, track complaints, respond to clarifications</p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-white/15 group-hover:text-amber-400 transition-colors flex-shrink-0" />
-                </div>
+                  <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-amber-400 group-hover:translate-x-1.5 transition-all flex-shrink-0" />
+                </motion.div>
 
                 {/* Department Card */}
-                <div
+                <motion.div
                   onClick={() => handleRoleCardClick('DEPARTMENT')}
-                  className="group cursor-pointer rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 hover:translate-x-1"
+                  whileHover={{ y: -6 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                  className="group cursor-pointer rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 relative overflow-hidden"
                   style={{
                     background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    backdropFilter: 'blur(12px)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(34,211,238,0.4)';
-                    e.currentTarget.style.background = 'rgba(34,211,238,0.06)';
+                    e.currentTarget.style.borderColor = 'rgba(34,211,238,0.5)';
+                    e.currentTarget.style.background = 'rgba(34,211,238,0.08)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(34,211,238,0.18)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
                     e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(34,211,238,0.15)', border: '1px solid rgba(34,211,238,0.25)' }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3" style={{ background: 'rgba(34,211,238,0.15)', border: '1px solid rgba(34,211,238,0.3)' }}>
                     <Building2 className="w-6 h-6 text-cyan-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-white font-bold text-base">Department</h3>
-                    <p className="text-white/30 text-xs mt-0.5 leading-relaxed">Technical assessments, complaint review, task creation</p>
+                    <h3 className="text-white font-bold text-base group-hover:text-cyan-300 transition-colors">Department</h3>
+                    <p className="text-white/40 text-xs mt-0.5 leading-relaxed">Technical assessments, complaint review, task creation</p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-white/15 group-hover:text-cyan-400 transition-colors flex-shrink-0" />
-                </div>
+                  <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-1.5 transition-all flex-shrink-0" />
+                </motion.div>
 
                 {/* Admin Card */}
-                <div
+                <motion.div
                   onClick={() => handleRoleCardClick('ADMIN')}
-                  className="group cursor-pointer rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 hover:translate-x-1"
+                  whileHover={{ y: -6 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                  className="group cursor-pointer rounded-2xl p-5 flex items-center gap-4 transition-all duration-300 relative overflow-hidden"
                   style={{
                     background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    backdropFilter: 'blur(12px)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(168,85,247,0.4)';
-                    e.currentTarget.style.background = 'rgba(168,85,247,0.06)';
+                    e.currentTarget.style.borderColor = 'rgba(168,85,247,0.5)';
+                    e.currentTarget.style.background = 'rgba(168,85,247,0.08)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(168,85,247,0.18)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
                     e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(168,85,247,0.15)', border: '1px solid rgba(168,85,247,0.25)' }}>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" style={{ background: 'rgba(168,85,247,0.15)', border: '1px solid rgba(168,85,247,0.3)' }}>
                     <ShieldCheck className="w-6 h-6 text-purple-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-white font-bold text-base">Administrator</h3>
-                    <p className="text-white/30 text-xs mt-0.5 leading-relaxed">System monitoring, role governance, audit administration</p>
+                    <h3 className="text-white font-bold text-base group-hover:text-purple-300 transition-colors">Administrator</h3>
+                    <p className="text-white/40 text-xs mt-0.5 leading-relaxed">System monitoring, role governance, audit administration</p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-white/15 group-hover:text-purple-400 transition-colors flex-shrink-0" />
-                </div>
+                  <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-purple-400 group-hover:translate-x-1.5 transition-all flex-shrink-0" />
+                </motion.div>
               </div>
 
               {/* Footer */}
-              <p className="text-white/15 text-[11px] text-center pt-2">
+              <p className="text-white/25 text-[11px] text-center pt-2">
                 AI-Powered Block Planning • South Central Railway
               </p>
-            </div>
+            </motion.div>
           )}
 
           {/* ============== STEP 2: LOGIN FORM ============== */}
           {step === 'login-form' && (
-            <div className="animate-fade-slide-up space-y-5">
+            <motion.div
+              key="login-form"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-5"
+            >
               {/* Back button */}
               <button
                 onClick={() => setStep('role-select')}
@@ -418,19 +483,19 @@ export default function LoginPage() {
                   />
                 </div>
 
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.01, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
                   className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-200 cursor-pointer mt-2"
                   style={{
                     background: `linear-gradient(135deg, ${roleAccent}, ${roleAccent}cc)`,
                     boxShadow: `0 4px 20px ${roleAccent}30`,
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 6px 28px ${roleAccent}50`; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.boxShadow = `0 4px 20px ${roleAccent}30`; e.currentTarget.style.transform = 'translateY(0)'; }}
                 >
                   <span>Sign In</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </motion.button>
 
                 {/* Sign Up link (hidden for Admin role) */}
                 {selectedRole !== 'ADMIN' && (
@@ -454,12 +519,19 @@ export default function LoginPage() {
                   </div>
                 )}
               </form>
-            </div>
+            </motion.div>
           )}
 
           {/* ============== STEP 3: SIGN UP FORM ============== */}
           {step === 'sign-up' && (
-            <div className="animate-fade-slide-up space-y-5">
+            <motion.div
+              key="sign-up"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-5"
+            >
               {/* Back button */}
               <button
                 onClick={() => setStep('login-form')}
@@ -564,7 +636,9 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.01, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white transition-all duration-200 cursor-pointer mt-2"
                   style={{
@@ -574,7 +648,7 @@ export default function LoginPage() {
                 >
                   <span>Create Account</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                </motion.button>
 
                 <div className="text-center pt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
                   <button type="button" onClick={() => setStep('login-form')} className="text-xs text-white/30 hover:text-white transition-colors cursor-pointer">
@@ -582,12 +656,19 @@ export default function LoginPage() {
                   </button>
                 </div>
               </form>
-            </div>
+            </motion.div>
           )}
 
           {/* ============== STEP 4: FORGOT PASSWORD ============== */}
           {step === 'forgot-password' && (
-            <div className="animate-fade-slide-up space-y-5">
+            <motion.div
+              key="forgot-password"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-5"
+            >
               {/* Back button */}
               <button
                 onClick={() => setStep('login-form')}
@@ -648,10 +729,16 @@ export default function LoginPage() {
                     />
                   </div>
 
-                  <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white cursor-pointer" style={{ background: 'linear-gradient(135deg, #3b82f6, #2563eb)', boxShadow: '0 4px 20px rgba(59,130,246,0.3)' }}>
+                  <motion.button
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white cursor-pointer"
+                    style={{ background: 'linear-gradient(135deg, #3b82f6, #2563eb)', boxShadow: '0 4px 20px rgba(59,130,246,0.3)' }}
+                  >
                     <span>Verify Identity</span>
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </motion.button>
                 </form>
               )}
 
@@ -675,10 +762,16 @@ export default function LoginPage() {
                     />
                   </div>
 
-                  <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white cursor-pointer" style={{ background: 'linear-gradient(135deg, #3b82f6, #2563eb)', boxShadow: '0 4px 20px rgba(59,130,246,0.3)' }}>
+                  <motion.button
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white cursor-pointer"
+                    style={{ background: 'linear-gradient(135deg, #3b82f6, #2563eb)', boxShadow: '0 4px 20px rgba(59,130,246,0.3)' }}
+                  >
                     <span>Verify Code</span>
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </motion.button>
                 </form>
               )}
 
@@ -695,10 +788,16 @@ export default function LoginPage() {
                     <input type="password" value={fpConfirmPass} onChange={(e) => setFpConfirmPass(e.target.value)} placeholder="Confirm New Password" required className={inputClass} />
                   </div>
 
-                  <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white cursor-pointer" style={{ background: 'linear-gradient(135deg, #3b82f6, #2563eb)', boxShadow: '0 4px 20px rgba(59,130,246,0.3)' }}>
+                  <motion.button
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white cursor-pointer"
+                    style={{ background: 'linear-gradient(135deg, #3b82f6, #2563eb)', boxShadow: '0 4px 20px rgba(59,130,246,0.3)' }}
+                  >
                     <span>Reset Password</span>
                     <Lock className="w-4 h-4" />
-                  </button>
+                  </motion.button>
                 </form>
               )}
 
@@ -712,18 +811,21 @@ export default function LoginPage() {
                   <p className="text-white/30 text-xs">
                     Your prototype authentication password for <span className="text-white font-mono">{fpId}</span> has been updated.
                   </p>
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                     type="button"
                     onClick={() => setStep('login-form')}
                     className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white cursor-pointer mt-2"
                     style={{ background: 'linear-gradient(135deg, #3b82f6, #2563eb)', boxShadow: '0 4px 20px rgba(59,130,246,0.3)' }}
                   >
                     Return to Login
-                  </button>
+                  </motion.button>
                 </div>
               )}
-            </div>
+            </motion.div>
           )}
+          </AnimatePresence>
 
         </div>
       </div>

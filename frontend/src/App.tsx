@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import ToastContainer from './components/ToastContainer';
 import LoginPage from './components/LoginPage';
+import PageTransition from './components/animations/PageTransition';
 
 import OverviewPage from './pages/OverviewPage';
 import TasksPage from './pages/TasksPage';
@@ -110,7 +111,9 @@ function AppLayout() {
       <div className="flex-1 ml-0 lg:ml-[240px] w-full min-w-0 flex flex-col min-h-screen">
         <Header />
         <main className="p-3 sm:p-4 md:p-6 w-full min-w-0 flex-1">
-          <ProtectedRoutes />
+          <PageTransition key={location.pathname}>
+            <ProtectedRoutes />
+          </PageTransition>
         </main>
       </div>
       <ToastContainer />

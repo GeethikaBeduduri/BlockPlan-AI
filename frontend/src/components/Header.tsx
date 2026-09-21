@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Bell, Menu, CheckCheck, User, Sliders, LogOut, Building2, ShieldCheck, UserCheck, X, AlertTriangle, Calendar, RefreshCw } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { useAuth } from '../context/AuthContext';
@@ -211,13 +212,21 @@ export default function Header() {
           >
             <Bell className="w-4 h-4 text-gray-500" />
             {hasUnread && (
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rail-red rounded-full" />
+              <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-rail-red"></span>
+              </span>
             )}
           </button>
 
           {/* Notifications Dropdown */}
           {notifOpen && (
-            <div className="absolute right-0 top-full mt-2 w-72 sm:w-80 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden animate-scale-in">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute right-0 top-full mt-2 w-72 sm:w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 overflow-hidden"
+            >
               <div className="px-4 py-3 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-bold text-navy-900">Notifications</span>
@@ -263,7 +272,7 @@ export default function Header() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
 
@@ -289,7 +298,12 @@ export default function Header() {
 
           {/* STEP 1: SMALL ANCHORED DROPDOWN MENU (3 OPTIONS) */}
           {dropdownOpen && (
-            <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden py-1 text-xs animate-scale-in">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 overflow-hidden py-1 text-xs"
+            >
               <button
                 onClick={() => { setDropdownOpen(false); setActiveModal('profile'); }}
                 className="w-full flex items-center gap-2.5 px-4 py-2.5 font-semibold text-gray-700 hover:bg-gray-50 transition-colors text-left cursor-pointer"
@@ -315,7 +329,7 @@ export default function Header() {
                 <LogOut className="w-4 h-4 text-red-500" />
                 <span>Sign out</span>
               </button>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

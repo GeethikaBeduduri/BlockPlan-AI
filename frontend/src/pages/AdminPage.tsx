@@ -1,5 +1,6 @@
 import { ShieldCheck, Database, CheckCircle2, FileText, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import KPICard from '../components/KPICard';
 import { useComplaints } from '../context/ComplaintContext';
 
@@ -19,10 +20,10 @@ export default function AdminPage() {
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="bg-navy-900 rounded-xl p-5 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 border border-navy-800">
-        <div>
+      <div className="relative overflow-hidden bg-navy-900 rounded-xl p-5 text-white flex flex-col md:flex-row md:items-center justify-between gap-4 border border-navy-800 shadow-lg shadow-purple-950/20">
+        <div className="absolute -top-16 -right-16 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10">
           <div className="flex items-center gap-2">
-           
             <span className="text-navy-300 text-xs">• Railway Board Operations Control</span>
           </div>
           <h1 className="text-xl sm:text-2xl font-extrabold mt-1">System Oversight & Governance Control</h1>
@@ -31,14 +32,16 @@ export default function AdminPage() {
           </p>
         </div>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => navigate('/complaints/audit')}
-          className="btn-primary text-xs flex items-center gap-1.5 self-start md:self-auto bg-purple-600 hover:bg-purple-700"
+          className="relative z-10 btn-primary text-xs flex items-center gap-1.5 self-start md:self-auto bg-purple-600 hover:bg-purple-700 cursor-pointer shadow-md shadow-purple-500/20"
         >
           <FileText className="w-4 h-4" />
           <span>View Full Audit Trail</span>
           <ArrowRight className="w-3.5 h-3.5" />
-        </button>
+        </motion.button>
       </div>
 
       {/* KPI Metrics */}

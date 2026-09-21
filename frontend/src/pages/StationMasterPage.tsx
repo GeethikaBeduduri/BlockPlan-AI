@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   FilePlus2, Clock, CheckCircle2, AlertTriangle, AlertCircle, HelpCircle, FileText, CheckSquare, RefreshCw, Upload, Eye
 } from 'lucide-react';
 import KPICard from '../components/KPICard';
+import ComplaintWorkflowTimeline from '../components/ComplaintWorkflowTimeline';
 import { useComplaints } from '../context/ComplaintContext';
 import { useAuth } from '../context/AuthContext';
 import { type DefectCategory, type ComplaintPriority, type Complaint, getDepartmentForCategory } from '../data/mockComplaints';
@@ -466,24 +468,47 @@ export default function StationMasterPage() {
               >
                 Cancel
               </button>
-              <button type="submit" className="btn-primary text-xs px-6">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="btn-primary text-xs px-6 cursor-pointer"
+              >
                 SUBMIT COMPLAINT
-              </button>
+              </motion.button>
             </div>
           </form>
         </div>
       )}
 
       {/* Modals for Station Master */}
+      <AnimatePresence>
       {selectedComplaint && modalMode && (
-        <div className="modal-overlay">
-          <div className="modal-content p-6 space-y-5">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="modal-overlay"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+            className="modal-content p-6 space-y-5"
+          >
             <div className="flex justify-between items-center border-b border-gray-100 pb-3">
               <div>
                 <h3 className="font-bold text-base text-navy-900">Complaint Details — {selectedComplaint.id}</h3>
                 <p className="text-xs text-gray-500">Concerned Dept: {selectedComplaint.concernedDepartment}</p>
               </div>
-              <button onClick={() => { setSelectedComplaint(null); setModalMode(null); }} className="text-gray-400 hover:text-gray-600">✕</button>
+              <button onClick={() => { setSelectedComplaint(null); setModalMode(null); }} className="text-gray-400 hover:text-gray-600 cursor-pointer">✕</button>
+            </div>
+
+            {/* Visual Workflow Lifecycle Timeline */}
+            <div className="bg-gray-50/80 p-3 rounded-xl border border-gray-200/80">
+              <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Lifecycle Progress</div>
+              <ComplaintWorkflowTimeline currentStatus={selectedComplaint.status} />
             </div>
 
             {/* Complaint Info */}
@@ -598,9 +623,10 @@ export default function StationMasterPage() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 }

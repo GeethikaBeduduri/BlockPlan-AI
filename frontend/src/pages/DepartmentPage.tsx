@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Building2, CheckCircle2, XCircle, HelpCircle, Clock, Zap, Cpu, Check, Layers
 } from 'lucide-react';
 import KPICard from '../components/KPICard';
 import CriticalityBadge from '../components/CriticalityBadge';
+import ComplaintWorkflowTimeline from '../components/ComplaintWorkflowTimeline';
 import { useComplaints } from '../context/ComplaintContext';
 import { useAuth } from '../context/AuthContext';
 import type { DepartmentType, Complaint } from '../data/mockComplaints';
@@ -301,9 +303,21 @@ export default function DepartmentPage() {
       </div>
 
       {/* Department Complaint Review & Technical Assessment Modal */}
+      <AnimatePresence>
       {selectedComplaint && actionMode === 'review' && (
-        <div className="modal-overlay">
-          <div className="modal-content max-w-3xl p-6 space-y-6">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="modal-overlay"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+            className="modal-content max-w-3xl p-6 space-y-6"
+          >
             <div className="flex justify-between items-center border-b border-gray-200 pb-3">
               <div>
                 <h3 className="font-extrabold text-base text-navy-900">
@@ -311,7 +325,13 @@ export default function DepartmentPage() {
                 </h3>
                 <p className="text-xs text-gray-500">Target Department: {selectedComplaint.concernedDepartment}</p>
               </div>
-              <button onClick={() => { setSelectedComplaint(null); setActionMode(null); }} className="text-gray-400 hover:text-gray-600">✕</button>
+              <button onClick={() => { setSelectedComplaint(null); setActionMode(null); }} className="text-gray-400 hover:text-gray-600 cursor-pointer">✕</button>
+            </div>
+
+            {/* Visual Workflow Lifecycle Timeline */}
+            <div className="bg-gray-50/80 p-3.5 rounded-xl border border-gray-200/80">
+              <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1">Workflow Lifecycle Progress</div>
+              <ComplaintWorkflowTimeline currentStatus={selectedComplaint.status} />
             </div>
 
             {/* SECTION 1: Station Master Input Summary */}
@@ -426,27 +446,33 @@ export default function DepartmentPage() {
                 {/* 3 Action Buttons */}
                 <div className="flex flex-col sm:flex-row justify-between gap-3 pt-3 border-t border-gray-200">
                   <div className="flex gap-2">
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => setActionMode('reject')}
-                      className="btn-danger text-xs py-2 px-3"
+                      className="btn-danger text-xs py-2 px-3 cursor-pointer"
                     >
                       [ REJECT COMPLAINT ]
-                    </button>
+                    </motion.button>
 
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => setActionMode('clarify')}
-                      className="btn-secondary text-xs py-2 px-3 text-amber-700 border-amber-300 hover:bg-amber-50"
+                      className="btn-secondary text-xs py-2 px-3 text-amber-700 border-amber-300 hover:bg-amber-50 cursor-pointer"
                     >
                       [ REQUEST MORE INFORMATION ]
-                    </button>
+                    </motion.button>
                   </div>
 
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={handleAcceptSubmit}
-                    className="btn-success text-xs py-2 px-6"
+                    className="btn-success text-xs py-2 px-6 cursor-pointer"
                   >
                     [ ACCEPT COMPLAINT ]
-                  </button>
+                  </motion.button>
                 </div>
               </div>
             ) : (
@@ -515,20 +541,33 @@ export default function DepartmentPage() {
                 </div>
 
                 <div className="flex justify-end">
-                  <button onClick={() => { setSelectedComplaint(null); setActionMode(null); }} className="btn-primary text-xs">
+                  <button onClick={() => { setSelectedComplaint(null); setActionMode(null); }} className="btn-primary text-xs cursor-pointer">
                     Close Details
                   </button>
                 </div>
               </div>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       {/* Reject Modal */}
+      <AnimatePresence>
       {selectedComplaint && actionMode === 'reject' && (
-        <div className="modal-overlay">
-          <div className="modal-content p-6 space-y-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="modal-overlay"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+            className="modal-content p-6 space-y-4"
+          >
             <h3 className="font-bold text-base text-red-600">Reject Complaint — {selectedComplaint.id}</h3>
             <p className="text-xs text-gray-600">Please provide mandatory rejection reason for Station Master audit logging.</p>
 
@@ -542,17 +581,37 @@ export default function DepartmentPage() {
             />
 
             <div className="flex justify-end gap-2">
-              <button onClick={() => setActionMode('review')} className="btn-secondary text-xs">Back</button>
-              <button onClick={handleRejectSubmit} className="btn-danger text-xs">Confirm Rejection</button>
+              <button onClick={() => setActionMode('review')} className="btn-secondary text-xs cursor-pointer">Back</button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleRejectSubmit}
+                className="btn-danger text-xs cursor-pointer"
+              >
+                Confirm Rejection
+              </motion.button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       {/* Clarification Modal */}
+      <AnimatePresence>
       {selectedComplaint && actionMode === 'clarify' && (
-        <div className="modal-overlay">
-          <div className="modal-content p-6 space-y-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="modal-overlay"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+            className="modal-content p-6 space-y-4"
+          >
             <h3 className="font-bold text-base text-amber-700">Request Information — {selectedComplaint.id}</h3>
             <p className="text-xs text-gray-600">Enter clarification message for Station Master:</p>
 
@@ -566,14 +625,20 @@ export default function DepartmentPage() {
             />
 
             <div className="flex justify-end gap-2">
-              <button onClick={() => setActionMode('review')} className="btn-secondary text-xs">Back</button>
-              <button onClick={handleClarifySubmit} className="btn-primary text-xs bg-amber-600 hover:bg-amber-700">
+              <button onClick={() => setActionMode('review')} className="btn-secondary text-xs cursor-pointer">Back</button>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleClarifySubmit}
+                className="btn-primary text-xs bg-amber-600 hover:bg-amber-700 cursor-pointer"
+              >
                 Send Clarification Request
-              </button>
+              </motion.button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 }
